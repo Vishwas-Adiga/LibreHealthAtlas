@@ -1,0 +1,148 @@
+#map {
+	height: 100%;
+}
+
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		font-family: "Montserrat", "Roboto";
+}
+			
+#overlay--collapsed {
+	width: 50%;
+	position: absolute;
+	bottom: 0;
+	left: 25%;
+	height: 40px;
+	background-color: #FFF;
+	border-radius: 20px 20px 0 0;
+	padding: 5px;
+	-webkit-box-shadow: -1px -3px 91px -2px rgba(0,0,0,0.62);
+	-moz-box-shadow: -1px -3px 91px -2px rgba(0,0,0,0.62);
+	box-shadow: -1px -3px 91px -2px rgba(0,0,0,0.62);
+	transition: height 0.1s;
+}
+
+#overlay--expanded {
+	width: 50%;
+	position: absolute;
+	bottom: 0;
+	left: 25%;
+	height: 90vh;
+	background-color: #FFF;
+	border-radius: 20px 20px 0 0;
+	padding: 5px;
+	-webkit-box-shadow: -1px -3px 91px -2px rgba(0,0,0,0.62);
+	-moz-box-shadow: -1px -3px 91px -2px rgba(0,0,0,0.62);
+	box-shadow: -1px -3px 91px -2px rgba(0,0,0,0.62);
+	transition: height 0.1s;
+	overflow-y: scroll;
+}
+
+#search-input {
+	background-color: transparent;
+	border: 0;
+	outline: none;
+	font-family: "Montserrat";
+	font-weight: 500;
+}
+
+#search-bar {
+	background-color: #EEE;
+	border-radius: 50px;
+	overflow: hidden;
+}
+
+#search-bar #search-button {
+	margin-left: 10px;
+}
+
+#marker-details {
+	padding: 20px;
+}
+
+#marker-name {
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+}
+
+#marker-product, #marker-desc, #marker-patients, #marker-address, #marker-website, #marker-email {
+	font-size: 16px;
+	color: #666;
+	font-family: "Roboto";
+	padding: 0;
+}
+
+#marker-website, #marker-email {
+	color: orange;
+}
+
+#marker-desc {
+	color: #000;
+}
+
+#search-title {
+	font-size: 16px;
+	margin: 20px 0 5px 20px;
+	font-weight: bold;
+	visibility: hidden;
+	transition: all 0.2s;
+}
+
+#search-prompt {
+	color: #888;
+	font-size: 14px;
+	font-family: "Roboto";
+	margin-top: 5px;
+	visibility: hidden;
+	float: right;
+	margin-right: 30px;
+	transition: all 0.2s;
+}
+
+#search-results {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.search-result__item {
+	width: 100%;
+	padding: 5px 20px 5px 20px;
+	transition: background-color 0.1s;
+	cursor: pointer;
+}
+
+.search-result__item:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.search-result__title {
+	font-size: 16px;
+	margin: 0 0 5px 0;
+	padding: 0;
+	font-weight: 500;
+}
+
+.search-result__details {
+	font-size: 14px;
+	color: #666;
+	margin: 0;
+	padding: 0;
+}
+
+.mdl-chip {
+	margin: 3px !important;
+}
+
+.gm-control-active.gm-fullscreen-control {
+	box-shadow: 0 !important;
+	border-radius: 60px !important;
+}
+
+.gmnoprint > div {
+	border-radius: 80px !important;
+	box-shadow: 0 !important;
+}
