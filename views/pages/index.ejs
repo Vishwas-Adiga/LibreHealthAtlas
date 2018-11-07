@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LibreHealth Atlas</title>
+    <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
-  </head>
+	</head>
   <body>
     <div id="map"></div>
 		<div id="overlay--collapsed">
-			<div id="search-bar">
-				<button class="mdl-button mdl-js-button mdl-button--icon" id="search-button">
-					<i class="material-icons">search</i>
-				</button>
-					<input type="text" id="search-input" placeholder="Find LibreHealth services nearby">
-			</div>
-			<p id="search-prompt">Hit enter to search</p>
-			<p id="search-title">Search results</p>
-			<div id="search-results">	
-			</div>
 			<div id="marker-details">
 				<p id="marker-name"></p>
 				<p id="marker-product"></p>
@@ -311,24 +301,9 @@
 				}
       }
 						
-			var searchButton = document.getElementById("search-button");
-			var searchBar = document.getElementById("search-bar");
-			var searchInput = document.getElementById("search-input");
-			var overlay = document.getElementById("overlay--collapsed");
-			
-			searchButton.style.marginTop = (searchBar.clientHeight - searchButton.clientHeight)/2 + 'px';
-			searchInput.style.height = searchBar.clientHeight + 'px';			
-			searchInput.style.width = searchBar.clientWidth - searchButton.clientWidth - 30 + 'px';
-			searchInput.style.marginTop = (searchBar.clientHeight - searchInput.clientHeight)/2 + 'px';
-			searchInput.addEventListener('click', expandOverlayWithSearchResults);
-			
-			searchButton.addEventListener('click', searchButtonClicked);
-			searchInput.onkeypress = (key)=>{searchKeyPressed(key.keyCode)};
-			
+			var overlay = document.getElementById("overlay--collapsed");			
 			function expandOverlayWithMarkerDetails(markerData) {
 				collapseOverlay();
-				document.getElementById("search-results").style.display = 'none';
-				document.getElementById("marker-details").style.display = 'block';
 				if(markerData.product == 'radiology') markerData.product = "LibreHealth Radiology";
 				if(markerData.product == 'ehr') markerData.product = "LibreHealth EHR";
 				if(markerData.product == 'toolkit') markerData.product = "LibreHealth Toolkit";
@@ -366,76 +341,9 @@
 				markerEmail.setAttribute('href', 'mailto:' + markerData.email);
 			}
 			
-			function expandOverlayWithSearchResults() {
-				if(searchInput.value != '') return;
-				collapseOverlay();
-				searchButton.innerHTML = '<i class="material-icons">close</i>';
-				overlay.setAttribute('id', 'overlay--expanded');
-				document.getElementById("search-results").style.display = 'block';
-				document.getElementById("marker-details").style.display = 'none';
-				document.getElementById('search-prompt').style.visibility = 'visible'; 
-			}
-			
 			function collapseOverlay() {
-				searchButton.innerHTML = '<i class="material-icons">search</i>';
 				overlay.setAttribute('id', 'overlay--collapsed');	
-				document.getElementById("marker-details").style.display = 'none';
-				document.getElementById("search-results").style.display = 'none';
-				document.getElementById('search-prompt').style.visibility = 'hidden'; 
-				document.getElementById('search-title').style.visibility = 'hidden'; 
-				document.getElementById("search-results").innerHTML = '';
-				searchInput.value = '';	
 				
-			}
-			
-			function searchButtonClicked() {
-				if(searchButton.innerHTML == '<i class="material-icons">close</i>') {
-					collapseOverlay();
-					return;
-				}	else {
-					expandOverlayWithSearchResults();
-				}
-			}
-			
-			function searchKeyPressed(key) {
-				if(!(key === 13)) return;
-				document.getElementById('search-prompt').style.visibility = 'hidden'; 	
-				document.getElementById('search-title').style.visibility = 'visible'; 	
-				var markersDataList = [];
-				document.getElementById("search-results").innerHTML = '';
-				var xmlHttp = new XMLHttpRequest();
-				xmlHttp.open( "GET", "https://sleepy-journey-39168.herokuapp.com/rest/markers?query=" + searchInput.value.replace(' ', '%20'), false);
-				xmlHttp.send(null);
-				markersDataList = JSON.parse(xmlHttp.responseText);	
-				if(markersDataList.length == 0) {
-					document.getElementById('search-title').textContent = "No results found";
-					return;
-				} else {
-					document.getElementById('search-title').textContent = "Search results";
-				}
-				for(let marker of markersDataList) {
-					var row = document.createElement("DIV");
-					var title = document.createElement("P");
-					var details = document.createElement("P");
-					
-					row.setAttribute('class', 'search-result__item');
-					title.setAttribute('class', 'search-result__title');
-					details.setAttribute('class', 'search-result__details');
-					
-					title.textContent = marker.name;
-					if(marker.product == 'radiology') details.textContent = "Radiology";
-					if(marker.product == 'ehr') details.textContent = "EHR";
-					if(marker.product == 'toolkit') details.textContent = "Toolkit";
-					details.textContent += ' / ' + marker.address.substring(0, 30) + '...';
-					
-					row.appendChild(title);
-					row.appendChild(details);
-					row.addEventListener('click', function() {
-						map.panTo({lat: marker.latitude, lng: marker.longitude});
-						collapseOverlay();
-					});
-					document.getElementById("search-results").appendChild(row);	
-				}
 			}
     </script>
 		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>

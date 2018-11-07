@@ -1,39 +1,26 @@
-# node-js-getting-started
+# LibreHealth Atlas
+An atlas to view LH users worldwide, written in Node.js and SQL
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
-
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
-
-## Running Locally
-
+## Getting Started
+Clone or download the repository to your computer. 
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
+$ git clone https://github.com/Vishwas-Adiga/LibreHealthAtlas
 $ npm install
-$ npm start
 ```
+Next, create a ClearDB database and fill the database credentials in index.js.
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
+To deploy, run 
+```sh
+git add .
+git commit -am 'Initial commit'
+git push heroku master
 ```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
+(Refer to [deploying to heroku](https://heroku.com/deploy) for a detailed guide)
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+Go to the link provided by the Heroku CLI. That's it! You have your own version of LH Atlas up and running!
 
 ## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+View the design documentation [here](https://docs.google.com/document/d/1OYRvTsoNGgy0ypW4iRug6dnnAL3O6IDfmpY7A-0lexQ/edit?usp=sharing)
+View the REST API documentation [here](https://docs.google.com/document/d/1agIQlrpZ0oEXLB_CmmxdLb9lfu1HPDCTf00NNzlDqWo/edit?usp=sharing)

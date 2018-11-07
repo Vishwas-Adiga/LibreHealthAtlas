@@ -13,7 +13,7 @@
 #overlay--collapsed {
 	width: 50%;
 	position: absolute;
-	bottom: 0;
+	bottom: -30px;
 	left: 25%;
 	height: 40px;
 	background-color: #FFF;
